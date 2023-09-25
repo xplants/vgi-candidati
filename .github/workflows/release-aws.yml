@@ -31,7 +31,7 @@ jobs:
           cache: "maven"
           
       - name: mkdir m2
-        run: mkdir ~/.m2/
+        run: mkdir -p ~/.m2/
           
       - name: copy settings
         run: cp src/main/other/settings.xml ~/.m2/

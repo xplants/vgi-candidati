@@ -1,0 +1,77 @@
+<wo:VTWrapper>
+  <div class="container-fluid">
+    <div class="actions actions-head">
+      <a href="#" class="btn btn-light btn-sm btn-back"><span class="fa fa-chevron-left"></span> indietro</a>
+    </div>
+    <wo:form directActionName="addDelivery" actionClass="VTAction" class="form-record-editing validate form-prepare-delivery">
+      <wo:if condition="$selectedRecord">
+        <wo:hidden name="id-package" value="$selectedRecord.primaryKey" />
+        <div class="form-group">
+          <label>Seleziona i destinatari</label>
+          <wo:not condition="$theAddresees.@count">
+            <div class="alert alert-warning">nessun destinatario disponibile</div>
+          </wo:not>
+          <wo:if condition="$theAddresees.@count">
+            <table class="table table-sm table-to-filter">
+              <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>Ragione sociale</th>
+                  <th>Nome e cognome</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <wo:repeat list="$theAddresees" item="$currentAddressee">
+                  <tr>
+                    <td><input type="checkbox" value="$currentAddressee.primaryKey" name="id-addressee" /></td>
+                    <td><wo:str value="$currentAddressee.theCompanyName" /></td>
+                    <td>
+                      <wo:str value="$currentAddressee.theName" />
+                      <wo:str value="$currentAddressee.theSurname" />
+                    </td>
+                    <td><wo:str value="$currentAddressee.theEmailsString" /></td>
+                  </tr>
+                </wo:repeat>
+              </tbody>
+            </table></wo:if>
+        </div>
+      </wo:if>
+      <wo:if condition="$selectedAddressee">
+        <wo:hidden name="id-addressee" value="$selectedAddressee.primaryKey" />
+        <div class="form-group">
+          <label>Seleziona il pacchetto da inviare</label>
+          <wo:not condition="$thePackages.@count">
+            <div class="alert alert-warning">nessun pacchetto disponibile</div>
+          </wo:not>
+          <wo:if condition="$thePackages.@count">
+            <table class="table table-sm table-to-filter">
+              <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>Creato</th>
+                  <th>Nome</th>
+                  <th>Elementi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <wo:repeat list="$thePackages" item="$currentPackage">
+                  <tr>
+                    <td><input type="radio" value="$currentPackage.primaryKey" name="id-package" /></td>
+                    <td><wo:str value="$currentPackage.dateCreation" dateformat="dd/MM/yyyy" /></td>
+                    <td><wo:str value="$currentPackage.theName" /></td>
+                    <td><wo:str value="$currentPackage.theContainers.@count" /></td>
+                  </tr>
+                </wo:repeat>
+              </tbody>
+            </table></wo:if>
+        </div>
+      </wo:if>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Prosegui 
+          <span class="fa fa-chevron-right"></span>
+        </button>
+      </div>
+    </wo:form>
+  </div>
+</wo:VTWrapper>

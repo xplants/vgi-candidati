@@ -1,0 +1,22 @@
+{
+    extraField001="Interessi";
+    uivgi.Sesso="Sesso";
+    uivgi.Maschio="Sig.";
+    uivgi.Femmina="Sig.ra";
+    uivgi.Nome="Nome";
+    uivgi.Cognome="Cognome";
+    uivgi.Email="Email";
+    "uivgi.Sono interessato ai seguenti argomenti"="Sono interessato ai seguenti argomenti";
+    uivgi.Iscrivimi="Autorizzo l'iscrizione";
+    uivgi.ConsensoPrivacy="Consenso privacy";
+    Save="Salva";
+    SaveChanges="Salva";
+    "UI.in evidenza"="Non pubblicare in homepage";
+    "Inserire la parola cercata e premere invio"="Cerca";
+    "Categorie"="Categorie";
+    "UI.mostra le immagini in modo automatico nell'articolo"="mostra l'immagine in homepage";
+    "uivgi.Desidero iscrivermi alla newsletter"="Desidero iscrivermi alla newsletter";
+    "uivgi.Cancellami"="Cancellami";
+    uivgi.email.unsubscribe.subject="Gestione iscrizione Newsletter";
+    uivgi.email.unsubscribe.body="Gentile utente, per procedere alla cancellazione dalla nostra newsletter clicca sul link in fondo a questo messaggio email.";
+}

@@ -1,0 +1,37 @@
+<wo:if condition="$hasSession">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <wo:link directActionName="default" actionClass="VTAction" class="nav-link"><span class="fa fa-home"></span>
+          Home</wo:link>
+      </li>
+      <li class="nav-item">
+        <wo:link directActionName="fileManager" actionClass="VTAction" class="nav-link"><span class="fa fa-folder"></span>
+          Gestione documenti</wo:link>
+      </li>
+      <li class="nav-item">
+        <wo:link directActionName="listPackages" actionClass="VTAction" class="nav-link"><span class="fa fa-archive"></span>
+          Gestione pacchetti</wo:link>
+      </li>
+      <li class="nav-item">
+        <wo:link directActionName="listAddressees" actionClass="VTAction" class="nav-link"><span class="fa fa-users"></span>
+          Gestione destinatari</wo:link>
+      </li>
+      <li class="nav-item">
+        <wo:link directActionName="listDeliveries" actionClass="VTAction" class="nav-link"><span class="fa fa-envelope"></span>
+          Gestione invii</wo:link>
+      </li>
+      <wo:if condition="$session.xtro.endUser.isAdminUser">
+        <li class="nav-item">
+          <wo:link directActionName="listUsers" actionClass="VTAction" class="nav-link"><span class="fa fa-cog"></span>
+            Gestione amministratori</wo:link>
+        </li></wo:if>
+      <li class="nav-item">
+        <wo:link directActionName="logout" actionClass="VTAction" class="nav-link"><span class="fa fa-sign-out"></span>
+          Esci</wo:link>
+      </li>
+    </ul>
+  </div></wo:if>

@@ -1,0 +1,70 @@
+<wo:VTWrapper>
+  <div class="container-fluid">
+    <div class="actions actions-head">
+      <wo:link directActionName="listAddressees" actionClass="VTAction" class="btn btn-light btn-sm"><span class="fa fa-chevron-left"></span>
+        elenco destinatari</wo:link>
+    </div>
+    <wo:form action="$saveChangesAction" class="form-record-editing validate">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="form-group">
+            <label>Ragione sociale</label>
+            <wo:textfield class="form-control" value="$selectedRecord.theCompanyName" />
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>Nome</label>
+                <wo:textfield class="form-control" value="$selectedRecord.theName" />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Cognome</label>
+                <wo:textfield class="form-control" value="$selectedRecord.theSurname" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Indirizzo</label>
+            <wo:textfield class="form-control" value="$selectedRecord.theStreet" />
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>CAP</label>
+                <wo:textfield class="form-control" value="$selectedRecord.thePostalCode" />
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label>Citt&agrave;</label>
+                <wo:textfield class="form-control" value="$selectedRecord.theTown" />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label>Pronvincia</label>
+                <wo:textfield maxlength="2" pattern="$provincePattern" class="form-control" value="$selectedRecord.theProvince" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label>Email</label>
+            <wo:text value="$selectedRecord.theEmails" class="multiple-items" />
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <wo:ERXSubmitButton class="btn btn-primary" action="$saveChangesAction"><span class="fa fa-save"></span>
+          Salva</wo:ERXSubmitButton>
+        <wo:not condition="$selectedRecord.isNewObject">
+          <wo:ERXSubmitButton class="btn btn-secondary" action="$prepareDeliveryAction"><span class="fa fa-envelope"></span>
+            Invia un pacchetto</wo:ERXSubmitButton>
+        </wo:not>
+      </div>
+    </wo:form>
+  </div>
+</wo:VTWrapper>

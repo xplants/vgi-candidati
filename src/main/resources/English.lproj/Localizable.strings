@@ -1,0 +1,17 @@
+{
+    extraField001="Interessi";
+    uivgi.Nome="Name";
+    uivgi.Cognome="Surname";
+    uivgi.Sesso="Gender";
+    uivgi.Maschio="Mr";
+    uivgi.Femmina="Ms";
+    uivgi.Email="Email";
+    "uivgi.Sono interessato ai seguenti argomenti"="I am interested in the following topics";
+    uivgi.Iscrivimi="Accept and subscribe";
+    uivgi.ConsensoPrivacy="Privacy authorization";
+    "Inserire la parola cercata e premere invio"="Search";
+    "UI.mostra le immagini in modo automatico nell'articolo"="mostra l'immagine in homepage";
+    uivgi.email.unsubscribe.subject="Newsletter subscription management";
+    uivgi.email.unsubscribe.body="Dear user, if you would like to unsubscribe our newsletter click on the link below.";
+    "uivgi.Cancellami"="Unsubscribe";
+}

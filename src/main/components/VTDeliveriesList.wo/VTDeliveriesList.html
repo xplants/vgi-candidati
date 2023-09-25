@@ -1,0 +1,50 @@
+<wo:VTWrapper title="Elenco degli invii">
+  <div class="container-fluid">
+    <div class="page-header">
+      <h4 class="text-danger">
+        <span class="fa fa-envelope"></span>
+        Elenco degli invii</h4>
+      <p>Visualizza gli invii creati</p>
+    </div>
+    <wo:if condition="$displayGroup.allObjects.@count">
+      <div class="table-responsive">
+        <table class="table table-sm table-striped table-to-filter">
+          <caption>Elenco degli invii</caption>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Data creazione</th>
+              <th>Data scadenza</th>
+              <th>Destinatari</th>
+              <th>Pacchetto</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <wo:repeat list="$displayGroup.displayedObjects" item="$currentRecord">
+              <tr>
+                <td>
+                  <wo:link directActionName="editDelivery" actionClass="VTAction" class="btn btn-secondary btn-sm" ?id="$currentRecord.primaryKey"><span class="fa fa-pencil"></span>
+                    modifica</wo:link>
+                </td>
+                <td><wo:str value="$currentRecord.dateCreation" dateformat="dd/MM/yyyy" /></td>
+                <td><wo:str value="$currentRecord.dateExpiration" dateformat="dd/MM/yyyy" /></td>
+                <td>
+                  <small>
+                    <wo:repeat list="$currentRecord.theAddressees" item="$currentAddresee"><wo:str value="$currentAddresee.theCompanyName" /><br /></wo:repeat>
+                  </small>
+                </td>
+                <td><wo:str value="$currentRecord.thePackage.theName" /></td>
+                <td>
+                  <wo:link action="$deleteAction" class="btn btn-danger btn-delete btn-sm"><span class="fa fa-trash"></span></wo:link>
+                </td>
+              </tr>
+            </wo:repeat>
+          </tbody>
+        </table>
+      </div>
+      <nav><wo:BS3Navigation displayGroup="$displayGroup" /></nav>
+    </wo:if>
+    
+  </div>
+</wo:VTWrapper>

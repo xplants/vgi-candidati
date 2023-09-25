@@ -1,0 +1,30 @@
+{
+    "WebObjects Release" = "WebObjects 5.0"; 
+    encoding = "UTF-8"; 
+    variables = {
+        displayGroup = {
+            class = ERXDisplayGroup; 
+            dataSource = {
+                class = EODatabaseDataSource; 
+                editingContext = "session.defaultEditingContext"; 
+                fetchSpecification = {
+                    class = EOFetchSpecification; 
+                    entityName = VTDelivery; 
+                    isDeep = YES; 
+                    prefetchingRelationshipKeyPaths = (); 
+                }; 
+            }; 
+            fetchesOnLoad = YES; 
+            formatForLikeQualifier = "%@*"; 
+            numberOfObjectsPerBatch = 50; 
+            selectsFirstObjectAfterFetch = NO; 
+            sortOrdering = (
+                {
+                    class = EOSortOrdering; 
+                    key = dateCreation; 
+                    selectorName = "compareDescending:"; 
+                }
+            ); 
+        }; 
+    }; 
+}

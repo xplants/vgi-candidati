@@ -1,0 +1,38 @@
+{
+    attributes = (
+        {columnName = dateCreation; name = dateCreation; prototypeName = dateTime; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = idVTDelivery; 
+            name = idVTDelivery; 
+            prototypeName = varchar16; 
+            width = 36; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theDescription; 
+            name = theDescription; 
+            prototypeName = varchar1000; 
+        }, 
+        {columnName = theType; name = theType; prototypeName = varchar100; }, 
+        {columnName = theUsername; name = theUsername; prototypeName = varchar100; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "it.xplants.xtro.vgi.transfer.eo.VTLog"; 
+    classProperties = (dateCreation, idVTDelivery, theDelivery, theDescription, theType, theUsername); 
+    externalName = VTLog; 
+    fetchSpecificationDictionary = {}; 
+    internalInfo = {"_javaClientClassName" = VTLog; }; 
+    name = VTLog; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = VTDelivery; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idVTDelivery; }); 
+            name = theDelivery; 
+        }
+    ); 
+}

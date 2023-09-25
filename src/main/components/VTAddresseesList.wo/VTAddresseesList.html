@@ -1,0 +1,51 @@
+<wo:VTWrapper title="Elenco dei destinatari">
+  <div class="container-fluid">
+    <div class="page-header">
+      <h4 class="text-secondary"><span class="fa fa-users"></span> Elenco dei destinatari</h4>
+      <p>Gestisci i destinatari dei pacchetti</p>
+    </div>
+    <div class="actions actions-head">
+      <wo:link directActionName="addAddressee" actionClass="VTAction" class="btn btn-success btn-sm"><span class="fa fa-plus"></span>
+        Nuovo destinatario</wo:link>
+    </div>
+    <wo:if condition="$displayGroup.allObjects.@count">
+      <div class="table-responsive">
+        <table class="table table-sm table-striped table-to-filter">
+          <caption>Elenco dei pacchetti</caption>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Data creazione</th>
+              <th>Ragione sociale</th>
+              <th>Nome</th>
+              <th>Cognome</th>
+              <th>Email</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <wo:repeat list="$displayGroup.displayedObjects" item="$currentRecord">
+              <tr>
+                <td>
+                  <wo:link directActionName="editAddressee" actionClass="VTAction" class="btn btn-secondary btn-sm" ?id="$currentRecord.primaryKey"><span class="fa fa-pencil"></span>
+                    modifica</wo:link>
+                </td>
+                <td><wo:str value="$currentRecord.dateCreation" dateformat="dd/MM/yyyy" /></td>
+                <td><wo:str value="$currentRecord.theCompanyName" /></td>
+                <td><wo:str value="$currentRecord.theName" /></td>
+                <td><wo:str value="$currentRecord.theSurname" /></td>
+                <td>
+                  <small><wo:str value="$currentRecord.theEmailsString" /></small>
+                </td>
+                <td>
+                  <wo:link action="$deleteAction" class="btn btn-danger btn-delete btn-sm"><span class="fa fa-trash"></span></wo:link>
+                </td>
+              </tr>
+            </wo:repeat>
+          </tbody>
+        </table>
+      </div>
+      <nav><wo:BS3Navigation displayGroup="$displayGroup" /></nav>
+    </wo:if>
+  </div>
+</wo:VTWrapper>

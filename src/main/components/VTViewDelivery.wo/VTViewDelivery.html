@@ -1,0 +1,65 @@
+<!DOCTYPE >
+<html lang="it">
+  <head>
+    <script>
+      window.VT = {};</script>
+    <wo:VTHead />
+    <wo:ERXJavaScript filename="bundle/main-fe-min.js" />
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><wo:img filename="bundle/top-header-logo.png" /></a>
+      </div>
+    </nav>
+    <div style="margin-top:80px;">
+      <div class="container-fluid">
+        <wo:if condition="$selectedRecord">
+          <div class="row">
+            <div class="col-sm-7">
+              <div class="card card-info">
+                <div class="card-header"><wo:str value="$selectedRecord.thePackage.theName" /></div>
+                <div class="list-group list-group-flush">
+                  <wo:repeat list="$selectedRecord.thePackage.theContainers" item="$currentContainer">
+                    <div class="list-group-item flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><wo:title container="$currentContainer" /></h5>
+                        <small><wo:str value="$currentContainer.thePublishedDate" dateformat="dd/MM/yyyy" /></small>
+                      </div>
+                      <div class="d-flex w-100 justify-content-between">
+                        <small> <wo:str value="$currentContainer.author.theUsername" /></small>
+                      </div>
+                    </div>
+                  </wo:repeat>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex w-100 justify-content-between">
+                    <small>creato il <wo:str value="$selectedRecord.thePackage.dateCreation" dateformat="dd/MM/yyyy" /></small>
+                    <small>dimensione <wo:str value="$selectedRecord.thePackage.theSize|formatBytes" /></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <wo:not condition="$selectedRecord.isExpired">
+                <wo:form directActionName="download" actionClass="VTAction" ?code="$selectedRecord.primaryKey">
+                  <button type="submit" class="btn btn-lg btn-primary btn-block">
+                    <span class="fa fa-download"></span>
+                    Scarica i documenti</button>
+                </wo:form></wo:not>
+              <wo:if condition="$selectedRecord.isExpired">
+                <div class="alert alert-warning">siamo spiacenti ma non &egrave; pi&ugrave; possibile scaricare i documenti. La possibilit&agrave; &egrave; scaduta il <wo:str value="$selectedRecord.dateExpiration" dateformat="dd/MM/yyyy" /></div>
+              </wo:if>
+            </div>
+          </div>
+        </wo:if>
+        <wo:not condition="$selectedRecord">
+          <div class="alert alert-warning"> siamo spiacenti ma la pagina richiesta non &egrave; disponibile </div>
+        </wo:not>
+      </div>
+    </div>
+    <wo:VTFooter />
+    <div id="unsaved-changes-alert" style="display:none;">Modifiche non registrate</div>
+    <div class="frame hidden-print"></div>
+  </body>
+</html>

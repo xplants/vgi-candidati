@@ -1,0 +1,15 @@
+<wo:if condition="$hasChildren">
+  <ul class="col" data-id="$container.idXTContainer">
+    <wo:repeat list="$theSections" item="$currentContainer">
+      <li data-container-class="$currentContainer.flagContainerClass" class="$liClass" data-id="$currentContainer.idXTContainer">
+        <span class="fa fa-folder-o"></span>
+        <wo:title container="$currentContainer" />
+      </li>
+    </wo:repeat>
+    <wo:repeat list="$theFiles" item="$currentContainer">
+      <li data-container-class="$currentContainer.flagContainerClass" class="$liClass" data-id="$currentContainer.idXTContainer">
+        <span class="fa fa-file"></span>
+        <wo:title container="$currentContainer" />
+      </li>
+    </wo:repeat>
+  </ul></wo:if>

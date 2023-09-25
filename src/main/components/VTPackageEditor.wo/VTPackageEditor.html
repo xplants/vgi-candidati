@@ -1,0 +1,127 @@
+<wo:VTWrapper>
+  <div class="container-fluid">
+    <div class="actions actions-head">
+      <wo:link directActionName="listPackages" actionClass="VTAction" class="btn btn-light btn-sm"><span class="fa fa-chevron-left"></span>
+        elenco pacchetti</wo:link>
+    </div>
+    <wo:form action="$saveChangesAction" class="form-record-editing validate">
+      <div class="row">
+        <div class="col-8">
+          <div class="form-group">
+            <label>Descrizione pacchetto</label>
+            <wo:textfield class="form-control" value="$selectedRecord.theName" required="required" />
+            <small class="text-muted form-text">indica una descrizione</small>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Giorni alla scadenza</label>
+            <wo:textfield class="form-control" required="required" type="number" value="$selectedRecord.theMaxDaysToExpiration" />
+            <small class="text-muted form-text">indica per quanti giorni il seguente pacchetto sar&agrave; disponibile ad ogni invio</small>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Documenti e cartelle disponibili</label>
+            <div id="selection-col">
+              <ul>
+                <wo:repeat list="$c.children.section" item="$currentContainer">
+                  <li>
+                    <div>
+                      <wo:if condition="$ccHasSubContainers"><a href="#" class="more"><span class="fa fa-chevron-right"></span></a></wo:if>
+                      <wo:not condition="$ccHasSubContainers"><a class="no-more"><span class="fa fa-chevron-right"></span></a></wo:not>
+                      <wo:genericContainer elementName="div" data-bytes="$ccSize" class="$draggableElementClasses" data-pk="$~''+currentContainer.thePathLevel+'-'+currentContainer.primaryKey">
+                        <span class="fa fa-folder-o"></span>
+                        <wo:title container="$currentContainer" />
+                        <div>
+                          <small class="text-muted"><wo:str value="$ccSize|formatBytes" /></small>
+                          <small class="text-muted">cr. <wo:str value="$currentContainer.theCreationDate" dateformat="dd/MM/yyyy" /></small>
+                          <small class="text-muted">| mod. <wo:str value="$currentContainer.theModificationDate" dateformat="dd/MM/yyyy" /></small>
+                        </div>
+                      </wo:genericContainer>
+                    </div>
+                    <wo:if condition="$cc.children.section">
+                      <ul>
+                        <wo:repeat list="$cc.children.section" item="$currentSubContainer">
+                          <li>
+                            <wo:genericContainer elementName="div" data-bytes="$cscSize" class="$draggableSubElementClasses" data-pk="$~''+currentSubContainer.thePathLevel+'-'+currentSubContainer.primaryKey">
+                              <span class="fa fa-folder-o"></span>
+                              <wo:title container="$currentSubContainer" />
+                              <div>
+                                <small class="text-muted"><wo:str value="$cscSize|formatBytes" /></small>
+                                <small class="text-muted">cr. <wo:str value="$currentSubContainer.theCreationDate" dateformat="dd/MM/yyyy" /></small>
+                                <small class="text-muted">| mod. <wo:str value="$currentSubContainer.theModificationDate" dateformat="dd/MM/yyyy" /></small>
+                              </div>
+                            </wo:genericContainer>
+                          </li>
+                        </wo:repeat>
+                      </ul>
+                    </wo:if>
+                    <wo:if condition="$cc.children.file">
+                      <ul>
+                        <wo:repeat list="$cc.children.file" item="$currentSubContainer">
+                          <li>
+                            <wo:genericContainer elementName="div" data-bytes="$cscSize" class="$draggableSubElementClasses" data-pk="$~''+currentSubContainer.thePathLevel+'-'+currentSubContainer.primaryKey">
+                              <span class="fa fa-file"></span>
+                              <wo:title container="$currentSubContainer" />
+                              <div>
+                                <small class="text-muted"><wo:str value="$cscSize|formatBytes" /></small>
+                                <small class="text-muted">cr. <wo:str value="$currentSubContainer.theCreationDate" dateformat="dd/MM/yyyy" /></small>
+                                <small class="text-muted">| mod. <wo:str value="$currentSubContainer.theModificationDate" dateformat="dd/MM/yyyy" /></small>
+                              </div>
+                            </wo:genericContainer>
+                          </li>
+                        </wo:repeat>
+                      </ul>
+                    </wo:if>
+                  </li>
+                </wo:repeat>
+              </ul>
+            </div>
+            <small class="text-muted form-text">elenco dei documenti caricati a sistema</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Elementi inclusi nel pacchetto</label>
+            <script>
+              VT.theContainers = <wo:str value="$theContainersJSONArray" escapeHTML="$false" />;
+            </script>
+            <div id="elements" class="dropzone">
+              <ul class="list-group">
+                <wo:repeat list="$selectedRecord.theContainers" item="$currentContainer">
+                  <li class="list-group-item">
+                    <div data-pk="$currentContainer.primaryKey" data-bytes="$ccSize">
+                      <wo:if condition="$currentContainer.isSection"><span class="fa fa-folder-o"></span></wo:if>
+                      <wo:if condition="$currentContainer.isFile"><span class="fa fa-file"></span></wo:if>
+                      <wo:title container="$currentContainer" />
+                      <div>
+                        <small class="text-muted"><wo:str value="$ccSize|formatBytes" /></small>
+                        <small class="text-muted">cr. <wo:str value="$currentContainer.theCreationDate" dateformat="dd/MM/yyyy" /></small>
+                        <small class="text-muted">| mod.<wo:str value="$currentContainer.theModificationDate" dateformat="dd/MM/yyyy" /></small>
+                      </div>
+                      <a href="#" class="btn btn-remove btn-danger btn-sm pull-right" data-pk="$~''+currentContainer.thePathLevel+'-'+currentContainer.primaryKey"><span class="fa fa-remove"></span></a>
+                    </div>
+                  </li>
+                </wo:repeat>
+              </ul>
+            </div>
+            <wo:text value="$theContainersJSONArray" id="VT-theContainers" class="d-none" />
+            <small class="text-muted form-text">elenco dei documenti selezionati per essere inclusi in questo pacchetto, premi sulla &quot;x&quot; se vuoi eliminarli dal pacchetto.</small>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <wo:ERXSubmitButton class="btn btn-primary" action="$saveChangesAction"><span class="fa fa-save"></span>
+          Salva</wo:ERXSubmitButton>
+        <wo:not condition="$selectedRecord.isNewObject">
+          <wo:ERXSubmitButton class="btn btn-secondary" action="$prepareDeliveryAction"><span class="fa fa-envelope"></span>
+            Invia</wo:ERXSubmitButton>
+        </wo:not>
+      </div>
+    </wo:form>
+  </div>
+</wo:VTWrapper>

@@ -1,0 +1,5 @@
+**/*.woa/**
+**/*.framework/**
+**/*.eomodeld~/**
+**/*.scss
+**/_datepicker.it-IT.js

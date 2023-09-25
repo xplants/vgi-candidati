@@ -1,0 +1,53 @@
+<!DOCTYPE >
+<html lang="it">
+  <head>
+    <script>
+       window.VT = {};
+      <wo:if condition="$user"> VT.colAction = '<wo:actionURL directActionName="col" actionClass="VTAction" />';
+       VT.editorAction = '<wo:actionURL directActionName="editor" actionClass="VTAction" />';</wo:if>
+       VT.hasUnsavedChanges = <wo:str value="$context.page.hasUnsavedChanges" />;
+    </script>
+    <wo:VTHead />
+    <title><wo:str value="$title" />  - VGI Transfer</title>
+  </head>
+  <body>
+    <wo:if condition="$user">
+      <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><wo:img filename="bundle/top-header-logo.png" /></a>
+          <wo:VTNav />
+        </div>
+      </nav>
+      <div style="margin-top:80px;">
+        <wo:if condition="$errorMessage">
+          <div class="container">
+            <div class="alert alert-danger"><wo:str value="$errorMessage" /></div>
+          </div>
+          <hr /></wo:if>
+        <wo:componentContent />
+      </div>
+      <wo:VTFooter />
+      <div id="unsaved-changes-alert" style="display:none;">Modifiche non registrate</div><div class="frame hidden-print"></div>
+    </wo:if>
+    <wo:not condition="$user">
+      <div class="container" style="padding-top:4vw;">
+        <div class="text-center"><wo:img filename="bundle/top-header-logo.png" /></div>
+        <wo:form directActionName="login" actionClass="VTAction" ?id="$container.idXTContainer" ?lang="$languageCode">
+          <div class="form-group">
+            <label>Nome utente</label>
+            <input type="text" name="username" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              <span class="fa fa-sign-in"></span>
+              Accedi</button>
+          </div>
+        </wo:form>
+      </div>
+    </wo:not>
+  </body>
+</html>

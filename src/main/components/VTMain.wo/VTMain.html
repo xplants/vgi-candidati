@@ -1,0 +1,115 @@
+<wo:VTWrapper>
+  <div class="container-fluid">
+    <div class="row">
+      <wo:if condition="$theLatestLogs.@count">
+        <div class="col-sm-6 col-md-3">
+          <div class="card bg-light card-info">
+            <div class="card-header"> Eventi recenti </div>
+            <ul class="list-group list-group-flush">
+              <wo:repeat list="$theLatestLogs" item="$currentLog">
+                <li class="list-group-item">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><wo:str value="$currentLog.theType" /></h5>
+                    <small><wo:str value="$currentLog.dateCreation" dateformat="dd/MM/yyyy HH:mm" /></small>
+                  </div>
+                  <div class="d-flex w-100 justify-content-between">
+                    <wo:if condition="$currentLog.theDelivery.thePackage"><p class="mb-1"><wo:str value="$currentLog.theDelivery.thePackage.theName" /></p></wo:if>
+                    <small> <wo:str value="$currentLog.theUsername" /></small>
+                  </div>
+                </li>
+              </wo:repeat>
+            </ul>
+            <div class="card-body">
+              <wo:link directActionName="listLogs" class="card-link" actionClass="VTAction"><span class="fa fa-list"></span>
+                mostra tutto...</wo:link>
+            </div>
+          </div>
+        </div>
+      </wo:if>
+      <wo:if condition="$theLatestDeliveries.@count">
+        <div class="col-sm-6 col-md-3">
+          <div class="card border-danger card-info">
+            <div class="card-header text-danger"> Invii recenti </div>
+            <div class="list-group list-group-flush">
+              <wo:repeat list="$theLatestDeliveries" item="$currentDelivery">
+                <wo:link directActionName="editDelivery" actionClass="VTAction" ?id="$currentDelivery.primaryKey" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><wo:str value="$currentDelivery.thePackage.theName" /></h5>
+                    <small><wo:str value="$currentDelivery.dateCreation" dateformat="dd/MM/yyyy" /></small>
+                  </div><div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1">
+                      <wo:repeat list="$currentDelivery.theAddressees" item="$currentAddresee"> <wo:str value="$currentAddresee.theCompanyName" /> </wo:repeat>
+                    </p>
+                    <small> <wo:str value="$currentDelivery.theUserCreator.theUsername" /></small>
+                  </div>
+                </wo:link>
+              </wo:repeat>
+            </div>
+            <div class="card-body">
+              <wo:link directActionName="listDeliveries" class="card-link text-danger" actionClass="VTAction"><span class="fa fa-list"></span>
+                mostra tutto...</wo:link>
+            </div>
+          </div>
+        </div>
+      </wo:if>
+      <wo:if condition="$theLatestAddresees.@count">
+        <div class="col-sm-6 col-md-3">
+          <div class="card border-secondary text-white card-info">
+            <div class="card-header text-secondary">
+              <span class="fa fa-users"></span>
+              Destinatari recenti 
+            </div>
+            <ul class="list-group list-group-flush">
+              <wo:repeat list="$theLatestAddresees" item="$currentAddresee">
+                <wo:link directActionName="editAddressee" actionClass="VTAction" ?id="$currentAddresee.primaryKey" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><wo:str value="$currentAddresee.theCompanyName" /></h5>
+                    <small><wo:str value="$currentAddresee.dateCreation" dateformat="dd/MM/yyyy" /></small>
+                  </div><div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1">
+                      <wo:str value="$currentAddresee.theName" />
+                      <wo:str value="$currentAddresee.theSurname" />
+                    </p>
+                    <small> <wo:str value="$currentAddresee.theUserCreator.theUsername" /></small>
+                  </div>
+                </wo:link>
+              </wo:repeat>
+            </ul>
+            <div class="card-body">
+              <wo:link directActionName="listAddressees" class="card-link text-secondary" actionClass="VTAction"><span class="fa fa-list"></span>
+                mostra tutto...</wo:link>
+            </div>
+          </div>
+        </div>
+      </wo:if>
+      <wo:if condition="$theLatestPackages.@count">
+        <div class="col-sm-6 col-md-3">
+          <div class="card border-primary card-info">
+            <div class="card-header text-primary">
+              <span class="fa fa-archive"></span>
+              Pacchetti recenti 
+            </div>
+            <div class="list-group list-group-flush">
+              <wo:repeat list="$theLatestPackages" item="$currentPackage">
+                <wo:link directActionName="editPackage" actionClass="VTAction" ?id="$currentPackage.primaryKey" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><wo:str value="$currentPackage.theName" /></h5>
+                    <small><wo:str value="$currentPackage.dateCreation" dateformat="dd/MM/yyyy" /></small>
+                  </div>
+                  <div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1 "> <wo:str value="$currentPackage.theSize|formatBytes" /> </p>
+                    <small> <wo:str value="$currentPackage.theUserCreator.theUsername" /></small>
+                  </div>
+                </wo:link>
+              </wo:repeat>
+            </div>
+            <div class="card-body text-white">
+              <wo:link directActionName="listPackages" class="card-link text-primary" actionClass="VTAction"><span class="fa fa-list"></span>
+                mostra tutto...</wo:link>
+            </div>
+          </div>
+        </div>
+      </wo:if>
+    </div>
+  </div>
+</wo:VTWrapper>

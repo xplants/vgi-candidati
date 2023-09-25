@@ -1,0 +1,11 @@
+[{
+	"modelName" : "XTCms",
+	"URL" : "jdbc:sqlserver://77.246.3.187:1433;databaseName=xtro_vwdwa",
+	"username" : "pallino_dbusr",
+	"password" : "78Ghyre"
+},{
+	"modelName" : "VGITransfer",
+	"URL" : "jdbc:sqlserver://77.246.3.187:1433;databaseName=xtro_vwdwa",
+	"username" : "pallino_dbusr",
+	"password" : "78Ghyre"
+}]

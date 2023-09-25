@@ -1,0 +1,87 @@
+<wo:VTWrapper>
+  <div class="container-fluid">
+    <div class="actions actions-head">
+      <wo:link directActionName="listDeliveries" actionClass="VTAction" class="btn btn-light btn-sm"><span class="fa fa-chevron-left"></span>
+        elenco invii</wo:link>
+    </div>
+    <div id="link">
+      <button class="btn btn-light">
+        <span class="fa fa-copy"></span>
+      </button>
+      <input value="$link" readonly="readonly" />
+    </div>
+    <div id="message">
+      <div class="alert alert-success" style="display:none;"></div>
+      <div class="alert alert-warning" style="display:none;"></div>
+    </div>
+    <wo:form action="$saveChangesAction" class="form-record-editing validate">
+      <div style="max-width:10rem;">
+        <div class="form-group">
+          <label>Data scadenza</label>
+          <wo:textfield value="$selectedRecord.dateExpiration" dateformat="dd/MM/yyyy" data-toggle="datepicker" class="form-control" />
+          <small class="form-text text-muted">valido fino alla mezzanotte</small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card bg-secondary text-white card-info">
+            <div class="card-header">
+              <span class="fa fa-users"></span>
+              Destinatari</div>
+            <div class="list-group list-group-flush">
+              <wo:repeat list="$selectedRecord.theAddressees" item="$currentAddresee">
+                <wo:link directActionName="editAddressee" actionClass="VTAction" ?id="$currentAddresee.primaryKey" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><wo:str value="$currentAddresee.theCompanyName" /></h5>
+                    <small><wo:str value="$currentAddresee.dateCreation" dateformat="dd/MM/yyyy" /></small>
+                  </div><div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1">
+                      <wo:str value="$currentAddresee.theName" />
+                      <wo:str value="$currentAddresee.theSurname" />
+                      <br />
+                      <wo:str value="$currentAddresee.theEmailsString" />
+                    </p>
+                    <small> <wo:str value="$currentAddresee.theUserCreator.theUsername" /></small>
+                  </div>
+                </wo:link>
+              </wo:repeat>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card bg-info card-info">
+            <div class="card-header text-white">
+              <span class="fa fa-folder"></span>
+              <wo:str value="$selectedRecord.thePackage.theName" />
+            </div>
+            <div class="list-group list-group-flush">
+              <wo:repeat list="$selectedRecord.thePackage.theContainers" item="$currentContainer">
+                <div class="list-group-item flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">
+                      <strong><wo:title container="$currentContainer" /></strong>
+                      <small> <wo:str value="$ccSize|formatBytes" /></small>
+                    </div>
+                    <small>
+                      <wo:str value="$currentContainer.author.theUsername" />
+                      <wo:str value="$currentContainer.thePublishedDate" dateformat="dd/MM/yyyy" />
+                    </small>
+                  </div>
+                </div>
+              </wo:repeat>
+            </div>
+            <div class="card-body text-white">
+              <div class="d-flex w-100 justify-content-between">
+                <small>creato il <wo:str value="$selectedRecord.thePackage.dateCreation" dateformat="dd/MM/yyyy" /></small>
+                <small>dimensione <wo:str value="$selectedRecord.thePackage.theSize|formatBytes" /></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <wo:ERXSubmitButton class="btn btn-primary" action="$saveChangesAction"><span class="fa fa-save"></span>
+          Salva</wo:ERXSubmitButton>
+      </div>
+    </wo:form>
+  </div></wo:VTWrapper>

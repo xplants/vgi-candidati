@@ -1,0 +1,75 @@
+{
+    attributes = (
+        {columnName = dateCreation; name = dateCreation; prototypeName = dateTime; }, 
+        {
+            allowsNull = Y; 
+            columnName = dateDeletion; 
+            name = dateDeletion; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            columnName = idXTUserCreator; 
+            externalType = BIGINT; 
+            name = idXTUserCreator; 
+            valueClassName = NSNumber; 
+            valueType = i; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = idXTUserDeleter; 
+            externalType = BIGINT; 
+            name = idXTUserDeleter; 
+            valueClassName = NSNumber; 
+            valueType = i; 
+        }, 
+        {
+            columnName = theMaxDaysToExpiration; 
+            name = theMaxDaysToExpiration; 
+            prototypeName = intNumber; 
+        }, 
+        {columnName = theName; name = theName; prototypeName = varchar255; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "it.xplants.xtro.vgi.transfer.eo.VTPackage"; 
+    classProperties = (
+        dateCreation, 
+        dateDeletion, 
+        theContainers, 
+        theMaxDaysToExpiration, 
+        theName, 
+        theUserCreator, 
+        theUserDeleter
+    ); 
+    externalName = VTPackage; 
+    fetchSpecificationDictionary = {}; 
+    name = VTPackage; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {definition = "vtPackageXTContainers.xtContainer"; name = theContainers; }, 
+        {
+            destination = XTUser; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idXTUser; sourceAttribute = idXTUserCreator; }); 
+            name = theUserCreator; 
+        }, 
+        {
+            destination = XTUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idXTUser; sourceAttribute = idXTUserDeleter; }); 
+            name = theUserDeleter; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = VTPackageXTContainer; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = vtPackageId; sourceAttribute = id; }); 
+            name = vtPackageXTContainers; 
+            propagatesPrimaryKey = Y; 
+        }
+    ); 
+}

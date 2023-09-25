@@ -1,0 +1,101 @@
+{
+    attributes = (
+        {columnName = dateCreation; name = dateCreation; prototypeName = dateTime; }, 
+        {
+            allowsNull = Y; 
+            columnName = dateDeletion; 
+            name = dateDeletion; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            columnName = dateExpiration; 
+            name = dateExpiration; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = id; 
+            name = id; 
+            prototypeName = varchar16; 
+            width = 36; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = idVTPackage; 
+            name = idVTPackage; 
+            prototypeName = id; 
+        }, 
+        {
+            columnName = idXTUserCreator; 
+            externalType = BIGINT; 
+            name = idXTUserCreator; 
+            valueClassName = NSNumber; 
+            valueType = i; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = idXTUserDeleter; 
+            externalType = BIGINT; 
+            name = idXTUserDeleter; 
+            valueClassName = NSNumber; 
+            valueType = i; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theEmails; 
+            name = theEmails; 
+            prototypeName = varchar1000; 
+        }
+    ); 
+    className = "it.xplants.xtro.vgi.transfer.eo.VTDelivery"; 
+    classProperties = (
+        dateCreation, 
+        dateDeletion, 
+        dateExpiration, 
+        id, 
+        theAddressees, 
+        theEmails, 
+        thePackage, 
+        theUserCreator, 
+        theUserDeleter
+    ); 
+    externalName = VTDelivery; 
+    fetchSpecificationDictionary = {}; 
+    name = VTDelivery; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {definition = "vtDeliveryVTAddressees.vtAddressee"; name = theAddressees; }, 
+        {
+            destination = VTPackage; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idVTPackage; }); 
+            name = thePackage; 
+        }, 
+        {
+            destination = XTUser; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idXTUser; sourceAttribute = idXTUserCreator; }); 
+            name = theUserCreator; 
+        }, 
+        {
+            destination = XTUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idXTUser; sourceAttribute = idXTUserDeleter; }); 
+            name = theUserDeleter; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = VTDeliveryVTAddressee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = vtDeliveryId; sourceAttribute = id; }); 
+            name = vtDeliveryVTAddressees; 
+            propagatesPrimaryKey = Y; 
+        }
+    ); 
+}

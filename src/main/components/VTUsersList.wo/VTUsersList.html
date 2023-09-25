@@ -1,0 +1,60 @@
+<wo:VTWrapper title="Elenco degli utenti amministratori">
+  <div class="container-fluid">
+    <div class="page-header">
+      <h4 class="text-danger">
+        <span class="fa fa-users"></span>
+        Elenco utenti amministratori</h4>
+      <p>Visualizza e modifica gli utenti amministratori</p>
+    </div>
+    <wo:if condition="$displayGroup.allObjects.@count">
+      <div class="table-responsive">
+        <table class="table table-sm table-striped table-to-filter">
+          <caption>Elenco degli amministratori</caption>
+          <thead>
+            <tr>
+              <th>Data creazione</th>
+              <th>Nome</th>
+              <th>Nome utente</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <wo:repeat list="$displayGroup.displayedObjects" item="$currentRecord">
+              <tr>
+                <td><wo:str value="$currentRecord.theDateRegistration" dateformat="dd/MM/yyyy" /></td>
+                <td><wo:str value="$currentRecord.displayString" /></td>
+                <td><wo:str value="$currentRecord.theUsername" /></td>
+                <td>
+                  <wo:link action="$deleteAction" class="btn btn-danger btn-delete btn-sm"><span class="fa fa-trash"></span></wo:link>
+                </td>
+              </tr>
+            </wo:repeat>
+          </tbody>
+        </table>
+      </div>
+      <nav><wo:BS3Navigation displayGroup="$displayGroup" /></nav>
+    </wo:if>
+    <div>
+      <wo:form action="$createUserAction" class="card">
+        <div class="card-header">Crea nuovo amministratore</div>
+        <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group"><wo:textfield value="$newUsername" placeholder="Nome utente" class="form-control" /></div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group"><wo:textfield value="$newPassword" placeholder="Password" class="form-control" /></div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group"><wo:textfield value="$newName" placeholder="Nome" class="form-control" /></div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group"><wo:textfield value="$newSurname" placeholder="Cognome" class="form-control" /></div>
+          </div>
+        </div>
+        <wo:ERXSubmitButton action="$createUserAction" class="btn btn-primary">Aggiungi</wo:ERXSubmitButton>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button></div>
+      </wo:form>
+    </div>
+  </div>
+</wo:VTWrapper>

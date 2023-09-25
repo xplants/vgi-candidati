@@ -1,0 +1,46 @@
+<wo:VTWrapper title="Gestione documenti">
+  <div class="container-fluid">
+    <div class="page-header">
+      <h4><span class="fa fa-folder"></span> Gestione documenti</h4>
+      <p>Gestisci i file e le cartelle che inserirai nei pacchetti</p>
+    </div>
+  <wo:if condition="$selectedRecord.isFile">
+  <script>
+  jQuery(document).ready(function($) { $('.form-add-file, .form-add-section').hide(); });
+  </script>
+  </wo:if>
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <wo:form directActionName="addSection" actionClass="VTAction" class="form-add-section">
+          <input type="hidden" name="id" class="form-control" data-field-name="id-parent" value="$selectedRecord.primaryKey" />
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <span class="fa fa-folder-o"></span>
+                </span>
+                <input type="text" name="new-title" placeholder="Nuova cartella" class="form-control form-control-sm" />
+              </div>
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-success btn-sm btn-round">
+                <span class="fa fa-plus"></span>
+              </button>
+            </div>
+            <div class="col-auto"></div>
+          </div>
+        </wo:form>
+      </div>
+      <div class="col-12 col-sm-6">
+        <wo:form directActionName="addFile" actionClass="VTAction" class="form-add-file">
+          <input type="hidden" name="id" class="form-control" data-field-name="id-parent" value="$selectedRecord.primaryKey" />
+          <wo:PLUpload dropLabel="Trascina un file in questa area per caricarlo..." id="new-file" fileFilters="*" maxFileSize="20"  />
+        </wo:form>
+      </div>
+    </div>
+    <div class="cols-wrapper">
+      <wo:repeat list="$theSelectedPath" item="$currentContainer"><wo:VTCol selectedContainer="$selectedRecord" container="$currentContainer" /></wo:repeat>
+      <wo:VTEditor container="$selectedRecord" />
+    </div>
+  </div>
+</wo:VTWrapper>

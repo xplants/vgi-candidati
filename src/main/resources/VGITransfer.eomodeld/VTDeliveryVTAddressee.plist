@@ -1,0 +1,42 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = vtAddresseeId; 
+            name = vtAddresseeId; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = vtDeliveryId; 
+            name = vtDeliveryId; 
+            prototypeName = varchar16; 
+            width = 36; 
+        }
+    ); 
+    attributesUsedForLocking = (vtAddresseeId); 
+    className = EOGenericRecord; 
+    classProperties = (vtDeliveryId); 
+    externalName = VTDeliveryVTAddressee; 
+    fetchSpecificationDictionary = {}; 
+    name = VTDeliveryVTAddressee; 
+    primaryKeyAttributes = (vtAddresseeId, vtDeliveryId); 
+    relationships = (
+        {
+            destination = VTAddressee; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = vtAddresseeId; }); 
+            name = vtAddressee; 
+        }, 
+        {
+            destination = VTDelivery; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = vtDeliveryId; }); 
+            name = vtDelivery; 
+        }
+    ); 
+}

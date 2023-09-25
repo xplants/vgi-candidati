@@ -1,0 +1,43 @@
+#selection-col{
+	ul{
+		list-style-type: none;
+	}
+	> ul{
+		border-top: 1px solid #ddd;
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		margin:0;
+		padding:0;
+		border-radius:4px;
+	}
+	> ul > li{
+		padding:8px 5px;
+		border-bottom: 1px solid #ddd;
+	}
+
+	> ul > li > div{
+		display: flex;
+		align-items: center;
+	}
+	> ul > li > ul{
+		display: none;
+	}
+	.more, .no-more{
+		display: block;
+		margin-right: 5px;
+		transition: transform .1s;
+		color:#666;
+		&.active{
+			transform: rotate(90deg);
+		}
+	}
+	.no-more{
+		color:#ddd;
+	}
+	.in-set{
+		color:#500;
+		font-weight: bold;
+
+	}
+
+}

@@ -1,0 +1,130 @@
+{
+    attributes = (
+        {columnName = dateCreation; name = dateCreation; prototypeName = dateTime; }, 
+        {
+            allowsNull = Y; 
+            columnName = dateDeletion; 
+            name = dateDeletion; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            columnName = idXTUserCreator; 
+            externalType = BIGINT; 
+            name = idXTUserCreator; 
+            valueClassName = NSNumber; 
+            valueType = i; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = idXTUserDeleter; 
+            externalType = BIGINT; 
+            name = idXTUserDeleter; 
+            valueClassName = NSNumber; 
+            valueType = i; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theCompanyName; 
+            name = theCompanyName; 
+            prototypeName = varchar100; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theEmails; 
+            name = theEmails; 
+            prototypeName = varchar1000; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theName; 
+            name = theName; 
+            prototypeName = varchar50; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theNotes; 
+            name = theNotes; 
+            prototypeName = varchar1000; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = thePostalCode; 
+            name = thePostalCode; 
+            prototypeName = varchar16; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theProvince; 
+            name = theProvince; 
+            prototypeName = varchar16; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theStreet; 
+            name = theStreet; 
+            prototypeName = varchar100; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theSurname; 
+            name = theSurname; 
+            prototypeName = varchar50; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = theTown; 
+            name = theTown; 
+            prototypeName = varchar100; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "it.xplants.xtro.vgi.transfer.eo.VTAddressee"; 
+    classProperties = (
+        dateCreation, 
+        dateDeletion, 
+        theCompanyName, 
+        theDeliveries, 
+        theEmails, 
+        theName, 
+        theNotes, 
+        thePostalCode, 
+        theProvince, 
+        theStreet, 
+        theSurname, 
+        theTown, 
+        theUserCreator, 
+        theUserDeleter
+    ); 
+    externalName = VTAddressee; 
+    fetchSpecificationDictionary = {}; 
+    name = VTAddressee; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {definition = "vtDeliveryVTAddressees.vtDelivery"; name = theDeliveries; }, 
+        {
+            destination = XTUser; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idXTUser; sourceAttribute = idXTUserCreator; }); 
+            name = theUserCreator; 
+        }, 
+        {
+            destination = XTUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idXTUser; sourceAttribute = idXTUserDeleter; }); 
+            name = theUserDeleter; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = VTDeliveryVTAddressee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = vtAddresseeId; sourceAttribute = id; }); 
+            name = vtDeliveryVTAddressees; 
+            propagatesPrimaryKey = Y; 
+        }
+    ); 
+}

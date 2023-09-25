@@ -1,0 +1,47 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = vtPackageId; 
+            name = vtPackageId; 
+            prototypeName = id; 
+        }, 
+        {
+            columnName = xtContainerIdXTContainer; 
+            externalType = BIGINT; 
+            name = xtContainerIdXTContainer; 
+            valueClassName = NSNumber; 
+            valueType = i; 
+        }
+    ); 
+    attributesUsedForLocking = (vtPackageId, xtContainerIdXTContainer); 
+    className = EOGenericRecord; 
+    classProperties = (xtContainerIdXTContainer); 
+    externalName = VTPackageXTContainer; 
+    fetchSpecificationDictionary = {}; 
+    name = VTPackageXTContainer; 
+    primaryKeyAttributes = (vtPackageId, xtContainerIdXTContainer); 
+    relationships = (
+        {
+            destination = VTPackage; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = vtPackageId; }); 
+            name = vtPackage; 
+        }, 
+        {
+            destination = XTContainer; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = (
+                {
+                    destinationAttribute = idXTContainer; 
+                    sourceAttribute = xtContainerIdXTContainer; 
+                }
+            ); 
+            name = xtContainer; 
+        }
+    ); 
+}

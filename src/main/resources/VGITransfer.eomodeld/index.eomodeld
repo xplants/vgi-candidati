@@ -1,0 +1,38 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    connectionDictionary = {
+        URL = "jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8"; 
+        driver = "com.mysql.jdbc.Driver"; 
+        password = m194asto; 
+        username = root; 
+    }; 
+    entities = (
+        {
+            className = "it.xplants.xtro.vgi.transfer.eo.VTAddressee"; 
+            name = VTAddressee; 
+        }, 
+        {className = "it.xplants.xtro.vgi.transfer.eo.VTDelivery"; name = VTDelivery; }, 
+        {className = EOGenericRecord; name = VTDeliveryVTAddressee; }, 
+        {className = "it.xplants.xtro.vgi.transfer.eo.VTLog"; name = VTLog; }, 
+        {className = "it.xplants.xtro.vgi.transfer.eo.VTPackage"; name = VTPackage; }, 
+        {className = EOGenericRecord; name = VTPackageXTContainer; }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            activeDatabaseConfigName = Default; 
+            databaseConfigs = {
+                Default = {
+                    adaptorName = JDBC; 
+                    connectionDictionary = {
+                        URL = "jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8"; 
+                        driver = "com.mysql.jdbc.Driver"; 
+                        password = m194asto; 
+                        username = root; 
+                    }; 
+                    prototypeEntityName = EOJDBCMySQLPrototypes; 
+                }; 
+            }; 
+        }; 
+    }; 
+}

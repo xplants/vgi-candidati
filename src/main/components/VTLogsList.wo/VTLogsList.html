@@ -1,0 +1,52 @@
+<wo:VTWrapper title="Log attività">
+  <div class="container-fluid">
+    <div class="page-header">
+      <h4>
+        <span class="fa fa-list"></span>
+        Log attivit&agrave;</h4>
+      <p>Visualizza le attivit&agrave; sugli invii dei pacchetti</p>
+    </div>
+    <wo:if condition="$displayGroup.allObjects.@count">
+      <div class="table-responsive">
+        <table class="table table-sm table-striped table-to-filter">
+          <caption>Log attivit&agrave;</caption>
+          <thead>
+            <tr>
+              <th>
+                <wo:link action="$sortBy.dateCreation">Data creazione</wo:link>
+              </th>
+              <th>
+                <wo:link action="$sortBy.theType">Tipo</wo:link>
+              </th>
+              <th>
+                <wo:link action="$sortBy.theDescription">Descrizione</wo:link>
+              </th>
+              <th>
+                <wo:link action="$sortBy.theUsername">Utente</wo:link>
+              </th>
+              <th>
+                <wo:link action="$sortBy.theDelivery.primaryKey">ID invio</wo:link>
+              </th>
+              <th>
+                <wo:link action="$sortBy.theDelivery.thePackage.theName">Pacchetto</wo:link>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <wo:repeat list="$displayGroup.displayedObjects" item="$currentRecord">
+              <tr>
+                <td><wo:str value="$currentRecord.dateCreation" dateformat="dd/MM/yyyy HH:mm:ss" /></td>
+                <td><wo:str value="$currentRecord.theType" /></td>
+                <td><wo:str value="$currentRecord.theDescription" /></td>
+                <td><wo:str value="$currentRecord.theUsername" /></td>
+                <td><wo:str value="$currentRecord.theDelivery.primaryKey" /></td>
+                <td><wo:str value="$currentRecord.theDelivery.thePackage.theName" /></td>
+              </tr>
+            </wo:repeat>
+          </tbody>
+        </table>
+      </div>
+      <nav><wo:BS3Navigation displayGroup="$displayGroup" /></nav>
+    </wo:if>
+  </div>
+</wo:VTWrapper>

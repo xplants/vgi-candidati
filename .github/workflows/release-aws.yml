@@ -29,6 +29,12 @@ jobs:
           distribution: "temurin"
           java-version: "11"
           cache: "maven"
+          
+      - name: mkdir m2
+        run: mkdir ~/.m2/
+          
+      - name: copy settings
+        run: cp src/main/other/settings.xml ~/.m2/
 
       - name: Build
         run: mvn package -Dmaven.resolver.transport=wagon

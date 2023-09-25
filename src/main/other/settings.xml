@@ -1,0 +1,74 @@
+<settings xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <pluginGroups>
+        <pluginGroup>org.objectstyle.woproject.maven2</pluginGroup>
+    </pluginGroups>
+    <activeProfiles>
+        <activeProfile>github</activeProfile>
+        <activeProfile>wocommunity.releases</activeProfile>
+    </activeProfiles>
+    <profiles>
+        <profile>
+            <id>github</id>
+            <repositories>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/xPlants-it/xtro41</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+
+                <repository>
+                    <id>xplants-archetypes</id>
+                    <url>https://maven.xplants.net</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>wocommunity.releases</id>
+            <repositories>
+                <repository>
+                    <id>wocommunity.releases</id>
+                    <name>WOCommunity Releases Repository</name>
+                    <url>
+                        https://maven.wocommunity.org/content/groups/public
+                    </url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>wocommunity.releases</id>
+                    <name>WOCommunity Releases Repository</name>
+                    <url>
+                        https://maven.wocommunity.org/content/groups/public
+                    </url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <servers>
+        <server>
+            <id>github</id>
+            <username>xplants</username>
+            <password>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</password>
+        </server>
+    </servers>
+</settings>
+

@@ -15,7 +15,7 @@ XT.STORE_LANGUAGE_IN_COOKIES=N
 it.xplants.xtro.gaSiteID=UA-56286544-1
 it.xplants.xtro.updateFrameworkBaseURL=false
 WOFrameworksBaseURL=/WebObjects/VGI.woa/Contents/Frameworks
-xtro.logobar.framework=App
+
 XT.DB_NAME=xtro_vgi
 XT.DEFAULT.CONTENT.allowKeywords=Y
 XT.DEFAULT.FILE.allowContentDescriptions=Y
@@ -37,3 +37,5 @@ it.vgi.IXSSoptions.method=HTTP
 XTCms.URL=jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8
 VGITransfer.URL=jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8
 #XPExtensions.URL=jdbc:mysql://127.0.0.1/xpextensions?autoReconnect=true&useUnicode=true&characterEncoding=UTF8
+
+xtcontroller.subscription.disabled=true

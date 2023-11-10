@@ -10,6 +10,8 @@ import er.extensions.appserver.ERXDisplayGroup;
 import er.extensions.eof.ERXEC;
 import er.extensions.eof.ERXQ;
 import it.xplants.xtro.XTUser;
+import it.xplants.xtro.utilities.XTLoggerUtilities;
+import it.xplants.xtro.vgi.Session;
 
 public class VTUsersList extends VTBaseComponent {
 	public ERXDisplayGroup displayGroup;
@@ -34,14 +36,18 @@ public class VTUsersList extends VTBaseComponent {
 		newUser.setTheName(newName);
 		newUser.setTheSurname(newSurname);
 		ec.saveChanges();
-		ec.dispose();
 		
-		newUsername = null; 
-		newPassword = null; 
-		newName = null; 
+		XTLoggerUtilities.getInstance().logOperation(null, "Creazione utente " + newUsername, ((Session) session()).xtro().endUser().theUsername() + " ha creato una nuova utenza", XTUser.class, newUser.idXTUser());
+	
+		ec.dispose();
+
+		newUsername = null;
+		newPassword = null;
+		newName = null;
 		newSurname = null;
 		newEmail = null;
 		newPasswordConfirmation = null;
+
 		return searchAction();
 	}
 
@@ -56,6 +62,11 @@ public class VTUsersList extends VTBaseComponent {
 		currentRecord.setTheUsername(currentRecord.theUsername() + "-disabled");
 		currentRecord.setFlagEnabled(0);
 		session().defaultEditingContext().saveChanges();
+		
+		
+		XTLoggerUtilities.getInstance().logOperation(null, "Cancellazione utente " + currentRecord.theUsername(), ((Session) session()).xtro().endUser().theUsername() + " ha creato eliminato una utenza", XTUser.class, currentRecord.idXTUser());
+
+		
 		return searchAction();
 	}
 }

@@ -1,0 +1,18 @@
+[
+  {
+    "modelName": "XTCms",
+    "URL": "jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8",
+    "username": "root",
+    "password": "m194asto",
+    "driver": "com.mysql.cj.jdbc.Driver",
+    "plugin": ""
+  },
+  {
+    "modelName": "VGITransfer",
+    "URL": "jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8",
+    "username": "root",
+    "password": "m194asto",
+    "driver": "com.mysql.cj.jdbc.Driver",
+    "plugin": ""
+  }
+]

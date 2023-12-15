@@ -34,8 +34,4 @@ XTRO.DEFAULT.ALLOW_CONTENT_INTRO=1
 it.vgi.sendToKuba=true
 it.vgi.IXSSoptions.method=HTTP
 
-XTCms.URL=jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8
-VGITransfer.URL=jdbc:mysql://127.0.0.1/xtro_vgi?autoReconnect=true&useUnicode=true&characterEncoding=UTF8
-#XPExtensions.URL=jdbc:mysql://127.0.0.1/xpextensions?autoReconnect=true&useUnicode=true&characterEncoding=UTF8
-
 xtcontroller.subscription.disabled=true

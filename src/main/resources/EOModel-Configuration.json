@@ -1,0 +1,18 @@
+[
+  {
+    "modelName": "XTCms",
+    "URL": "jdbc:mysql://DB_HOST/DB_NAME?autoReconnect=true&useUnicode=true&characterEncoding=UTF8",
+    "username": "DB_USER",
+    "password": "DB_PASSWORD",
+    "driver": "com.mysql.cj.jdbc.Driver",
+    "plugin": ""
+  },
+  {
+    "modelName": "VGITransfer",
+    "URL": "jdbc:mysql://DB_HOST/DB_NAME?autoReconnect=true&useUnicode=true&characterEncoding=UTF8",
+    "username": "DB_USER",
+    "password": "DB_PASSWORD",
+    "driver": "com.mysql.cj.jdbc.Driver",
+    "plugin": ""
+  }
+]
